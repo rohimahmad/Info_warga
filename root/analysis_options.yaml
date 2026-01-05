@@ -1,0 +1,19 @@
+# Menggunakan aturan linter standar dari package flutter_lints
+include: package:flutter_lints/flutter.yaml
+
+# Tambahan aturan khusus proyek
+linter:
+  rules:
+    # Hindari penggunaan print di produksi
+    avoid_print: true
+
+    # Gunakan constructor const jika memungkinkan
+    prefer_const_constructors: true
+
+    # Gunakan tipe data yang tepat
+    prefer_final_fields: true
+    prefer_final_locals: true
+
+    # Gunakan camelCase untuk identifier
+    camel_case_types: true
+    camel_case_extensions: true
