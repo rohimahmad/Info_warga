@@ -1,0 +1,6 @@
+projectKey=info_warga
+serverUrl=http://localhost:9000
+serverVersion=25.12.0.117093
+dashboardUrl=http://localhost:9000/dashboard?id=info_warga
+ceTaskId=2cbc6314-ee53-4556-8cc9-79df1e105ba4
+ceTaskUrl=http://localhost:9000/api/ce/task?id=2cbc6314-ee53-4556-8cc9-79df1e105ba4
