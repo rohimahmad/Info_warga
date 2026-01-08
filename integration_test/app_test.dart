@@ -50,11 +50,11 @@ void main() {
       await tester.pumpAndSettle();
 
       // Save the original size
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+      addTearDown(tester.view.resetPhysicalSize);
 
       // Test landscape orientation
-      tester.binding.window.physicalSizeTestValue = const Size(800, 600);
-      addTearDown(tester.binding.window.clearPhysicalSizeTestValue);
+      tester.view.physicalSize = const Size(800, 600);
+      addTearDown(tester.view.resetPhysicalSize);
       await tester.pumpAndSettle();
 
       // Verify app still works

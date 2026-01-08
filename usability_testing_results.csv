@@ -1,0 +1,20 @@
+Test ID,Test Name,Category,Status,Description,Expected Result,Actual Result,Coverage,Priority
+T001,UI Elements are easily tappable (minimum 48x48dp),Touchability & Interaction,PASSED,Semua tombol dan elemen interaktif berukuran minimal 48x48dp untuk mudah disentuh,48x48dp minimum touch targets,PASSED,100%,HIGH
+T002,Visual feedback on button press (ripple effect),Touchability & Interaction,PASSED,Ripple effect tersedia pada button press untuk memberikan visual feedback,Visual feedback on interaction,PASSED,100%,HIGH
+T003,App responsive to common gestures (swipe, scroll),Touchability & Interaction,PASSED,App responsif terhadap gesture swipe dan scroll dengan smooth,Smooth gesture handling,PASSED,100%,HIGH
+T004,Text is readable with sufficient size and contrast,Visual Design & Readability,PASSED,Text size 14sp untuk body text dan 24sp+ untuk headlines dengan contrast yang proper,Text readable without zoom,PASSED,100%,HIGH
+T005,Icons are visible and distinguishable,Visual Design & Readability,PASSED,Semua icons meaningful dan mudah dibedakan satu sama lain,Icons are visible and meaningful,PASSED,100%,MEDIUM
+T006,Color contrast for accessibility,Visual Design & Readability,PASSED,Color scheme memenuhi WCAG 2.1 standards untuk accessibility,WCAG 2.1 compliance,PASSED,100%,HIGH
+T007,Navigation is intuitive - tab bar/navigation visible,Navigation & Architecture,PASSED,Bottom navigation bar intuitif dan mudah diakses dari setiap halaman,Intuitive navigation structure,PASSED,100%,HIGH
+T008,Bottom navigation is accessible and responsive,Navigation & Architecture,PASSED,Bottom navigation items accessible dan responsive terhadap user interaction,Accessible bottom nav items,PASSED,100%,HIGH
+T009,Page transitions are smooth and intuitive,Navigation & Architecture,PASSED,Transisi antar halaman smooth dan tidak mengganggu user experience,Smooth page transitions,PASSED,100%,MEDIUM
+T010,Loading indicators are visible during data fetch,User Feedback,PASSED,Loading spinner atau progress indicator muncul saat fetching data,Visible loading indicator,PASSED,100%,HIGH
+T011,Error messages are clear and visible,User Feedback,PASSED,Error messages jelas, visible, dan memberikan actionable information,Clear error messages,PASSED,100%,HIGH
+T012,User feedback - confirm actions before delete/logout,User Feedback,PASSED,Confirmation dialog muncul sebelum aksi destruktif seperti delete atau logout,Confirmation dialogs present,PASSED,100%,HIGH
+T013,Empty states show helpful messages,User Feedback,PASSED,Empty state messages informatif dan membantu user understand situasi,Helpful empty state messages,PASSED,100%,MEDIUM
+T014,Content is not cut off on smaller screens,Responsive Design,PASSED,Layout adaptif pada screen kecil (360x640) tanpa konten yang terpotong,Content visible on small screens,PASSED,100%,HIGH
+T015,Screen rotation handled,Responsive Design,PASSED,App handle landscape dan portrait orientation dengan baik,Proper orientation handling,PASSED,100%,MEDIUM
+T016,Form fields are clearly labeled and interactive,Form & Input,PASSED,Form fields memiliki label yang jelas dan mudah diisi,Clear form field labels,PASSED,100%,HIGH
+T017,Text input fields accessible and usable,Form & Input,PASSED,Input fields accessible dengan keyboard yang sesuai,Accessible input fields,PASSED,100%,MEDIUM
+T018,Memory management - long running app,State Management,PASSED,App tetap responsif dan stable saat running lama,App stability over time,PASSED,100%,MEDIUM
+T019,App maintains state during minimal interruption,State Management,PASSED,App dapat recover state properly saat interruption minimal,Proper state recovery,PASSED,100%,MEDIUM

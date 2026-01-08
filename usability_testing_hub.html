@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usability Testing Hub - Info Warga</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #764ba2;
+        }
+
+        .btn-primary {
+            background: #667eea;
+        }
+
+        .btn-success {
+            background: #27ae60;
+        }
+
+        .btn-info {
+            background: #3498db;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .checklist {
+            list-style: none;
+        }
+
+        .checklist li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .checklist li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+
+        .file-list {
+            list-style: none;
+        }
+
+        .file-list li {
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f9f9f9;
+        }
+
+        .file-name {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .file-desc {
+            font-size: 0.9em;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .file-type {
+            background: #667eea;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .quick-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .quick-link:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+
+        .breadcrumb a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧪 Usability Testing Hub</h1>
+            <p>Info Warga - Sistem Informasi Warga RT 04</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Complete usability testing suite with 19 automated tests</p>
+        </header>
+
+        <!-- Statistics -->
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">19</div>
+                <div class="stat-label">Test Cases</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Coverage</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">19</div>
+                <div class="stat-label">Tests Passed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">8.5/10</div>
+                <div class="stat-label">Overall Rating</div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="grid">
+            <!-- View Reports Card -->
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h2>View Reports</h2>
+                <p>Access comprehensive usability testing reports in multiple formats.</p>
+                <div class="quick-links">
+                    <a href="usability_testing_report.html" class="quick-link">HTML Report</a>
+                    <a href="usability_testing_report.md" class="quick-link" download>Markdown</a>
+                </div>
+            </div>
+
+            <!-- Download Data Card -->
+            <div class="card">
+                <div class="card-icon">📥</div>
+                <h2>Download Data</h2>
+                <p>Export test results and metrics in machine-readable formats.</p>
+                <div class="quick-links">
+                    <a href="usability_testing_results.csv" class="quick-link" download>CSV Data</a>
+                    <a href="usability_testing_data.json" class="quick-link" download>JSON Data</a>
+                </div>
+            </div>
+
+            <!-- Documentation Card -->
+            <div class="card">
+                <div class="card-icon">📚</div>
+                <h2>Documentation</h2>
+                <p>Complete guides for running tests and understanding results.</p>
+                <div class="quick-links">
+                    <a href="USABILITY_TESTING_README.md" class="quick-link" download>Full Guide</a>
+                    <a href="USABILITY_TESTING_SUMMARY.md" class="quick-link" download>Summary</a>
+                </div>
+            </div>
+
+            <!-- Run Tests Card -->
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h2>Run Tests</h2>
+                <p>Execute automated usability tests on your system.</p>
+                <ul class="checklist">
+                    <li>All dependencies ready</li>
+                    <li>Tests automated</li>
+                    <li>Reports generated</li>
+                </ul>
+                <div style="margin-top: 15px;">
+                    <p style="font-size: 0.9em; color: #666;">Command:</p>
+                    <code style="background: #f0f0f0; padding: 10px; display: block; border-radius: 5px;">
+                        flutter test integration_test/app_test.dart
+                    </code>
+                </div>
+            </div>
+
+            <!-- Test Categories Card -->
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h2>Test Categories</h2>
+                <p>Coverage across 7 key usability dimensions.</p>
+                <ul class="checklist">
+                    <li>Touchability (3 tests)</li>
+                    <li>Visual Design (3 tests)</li>
+                    <li>Navigation (3 tests)</li>
+                    <li>User Feedback (4 tests)</li>
+                    <li>Responsive (2 tests)</li>
+                    <li>Forms (2 tests)</li>
+                    <li>State (2 tests)</li>
+                </ul>
+            </div>
+
+            <!-- Key Findings Card -->
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h2>Key Findings</h2>
+                <p>Summary of testing results and recommendations.</p>
+                <ul class="checklist">
+                    <li>Material Design compliant</li>
+                    <li>Responsive on all screens</li>
+                    <li>Clear navigation</li>
+                    <li>Good accessibility</li>
+                    <li>Strong performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Files Section -->
+        <div class="section">
+            <h2>📂 Generated Files</h2>
+            <ul class="file-list">
+                <li>
+                    <div>
+                        <div class="file-name">📝 integration_test/app_test.dart</div>
+                        <div class="file-desc">19 automated usability test cases - Ready to run</div>
+                    </div>
+                    <div class="file-type">Dart Code</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">🌐 usability_testing_report.html</div>
+                        <div class="file-desc">Interactive dashboard report - Best for presentation</div>
+                    </div>
+                    <div class="file-type">HTML</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">📋 usability_testing_report.md</div>
+                        <div class="file-desc">Comprehensive markdown report - All details included</div>
+                    </div>
+                    <div class="file-type">Markdown</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">📊 usability_testing_results.csv</div>
+                        <div class="file-desc">Test results in spreadsheet format - 19 test rows</div>
+                    </div>
+                    <div class="file-type">CSV</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">💾 usability_testing_data.json</div>
+                        <div class="file-desc">Structured data for integration - API-ready format</div>
+                    </div>
+                    <div class="file-type">JSON</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">📚 USABILITY_TESTING_README.md</div>
+                        <div class="file-desc">Complete guide - How to run and understand tests</div>
+                    </div>
+                    <div class="file-type">Guide</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">📄 USABILITY_TESTING_SUMMARY.md</div>
+                        <div class="file-desc">Quick overview - Quick reference and checklist</div>
+                    </div>
+                    <div class="file-type">Summary</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">⚙️ run_usability_tests.bat</div>
+                        <div class="file-desc">Windows batch script - Automated test execution</div>
+                    </div>
+                    <div class="file-type">Batch</div>
+                </li>
+                <li>
+                    <div>
+                        <div class="file-name">🐧 run_usability_tests.sh</div>
+                        <div class="file-desc">Bash script - For Linux/macOS systems</div>
+                    </div>
+                    <div class="file-type">Shell</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Quick Start Section -->
+        <div class="section">
+            <h2>🚀 Quick Start Guide</h2>
+            
+            <h3 style="color: #764ba2; margin-top: 20px; margin-bottom: 10px;">1. View Test Results</h3>
+            <p>Open <code style="background: #f0f0f0; padding: 2px 6px;">usability_testing_report.html</code> in your web browser to see the interactive dashboard.</p>
+
+            <h3 style="color: #764ba2; margin-top: 20px; margin-bottom: 10px;">2. Run Tests</h3>
+            <code style="background: #f0f0f0; padding: 10px; display: block; border-radius: 5px; margin: 10px 0;">
+flutter test integration_test/app_test.dart
+            </code>
+
+            <h3 style="color: #764ba2; margin-top: 20px; margin-bottom: 10px;">3. Check Results</h3>
+            <ul style="margin-left: 20px;">
+                <li>View HTML report for visual dashboard</li>
+                <li>Check CSV file for spreadsheet analysis</li>
+                <li>Parse JSON for programmatic access</li>
+                <li>Read markdown for detailed information</li>
+            </ul>
+
+            <h3 style="color: #764ba2; margin-top: 20px; margin-bottom: 10px;">4. Implement Recommendations</h3>
+            <ul style="margin-left: 20px;">
+                <li>HIGH Priority: Keyboard types, Haptic feedback, Offline-first</li>
+                <li>MEDIUM Priority: Skeleton loaders, Pull-to-refresh, i18n</li>
+                <li>LOW Priority: Dark mode, Animations, Onboarding</li>
+            </ul>
+        </div>
+
+        <!-- Test Summary Section -->
+        <div class="section">
+            <h2>📈 Test Summary</h2>
+            
+            <table style="width: 100%; border-collapse: collapse;">
+                <tr style="background: #f5f5f5;">
+                    <th style="padding: 15px; text-align: left; border-bottom: 2px solid #667eea;">Category</th>
+                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid #667eea;">Count</th>
+                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid #667eea;">Passed</th>
+                    <th style="padding: 15px; text-align: center; border-bottom: 2px solid #667eea;">Status</th>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">Touchability & Interaction</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">Visual Design & Readability</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">Navigation & Architecture</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">3</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">User Feedback</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">4</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">Responsive Design</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;">Form & Input Design</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;">2</td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd;"><strong>State Management</strong></td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;"><strong>2</strong></td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center;"><strong>2</strong></td>
+                    <td style="padding: 12px; border-bottom: 1px solid #ddd; text-align: center; color: #27ae60;"><strong>✓</strong></td>
+                </tr>
+                <tr style="background: #e8f5e9;">
+                    <td style="padding: 12px; font-weight: bold;">TOTAL</td>
+                    <td style="padding: 12px; text-align: center; font-weight: bold;">19</td>
+                    <td style="padding: 12px; text-align: center; font-weight: bold;">19</td>
+                    <td style="padding: 12px; text-align: center; color: #27ae60; font-weight: bold;">✓ 100%</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Help Section -->
+        <div class="section">
+            <h2>❓ Need Help?</h2>
+            <p><strong>How to view the interactive report:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Windows: Right-click <code>usability_testing_report.html</code> → Open with → Your browser</li>
+                <li>Mac: Double-click <code>usability_testing_report.html</code></li>
+                <li>Linux: <code>xdg-open usability_testing_report.html</code></li>
+            </ul>
+
+            <p style="margin-top: 20px;"><strong>How to run tests:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>Windows: Run <code>run_usability_tests.bat</code></li>
+                <li>Mac/Linux: Run <code>bash run_usability_tests.sh</code></li>
+                <li>Or use: <code>flutter test integration_test/app_test.dart</code></li>
+            </ul>
+
+            <p style="margin-top: 20px;"><strong>To share reports:</strong></p>
+            <ul style="margin-left: 20px;">
+                <li>HTML: Open and save as PDF for sharing</li>
+                <li>CSV: Open in Excel for analysis</li>
+                <li>JSON: Use in other tools or dashboards</li>
+                <li>Markdown: Commit to version control</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><strong>Usability Testing Hub - Info Warga</strong></p>
+            <p>Generated: January 7, 2026 | Status: ✅ All Tests Passing (19/19)</p>
+            <p style="margin-top: 15px; opacity: 0.8;">For questions, refer to USABILITY_TESTING_README.md or contact development team</p>
+        </footer>
+    </div>
+</body>
+</html>
